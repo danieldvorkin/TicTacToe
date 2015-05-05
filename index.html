@@ -6,13 +6,15 @@
 		<meta name="description" content="Simple Tic-Tac-Toe game built using HTML5, JavaScript, jQuery, and CSS." />
 		<meta name="keywords" content="tic-tac-toe, game, html5, javascript, jquery, css" />
 		<meta name="viewport" content="width = device-width" />
+		<script src="dist/sweetalert.min.js"></script> 
+		<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
 		<style type="text/css">
 		body {
 			font-size: 1.5em;
 			font-family: Helvetica, Arial;
 			text-align: center;
 			font-weight: italic;
-			color: white;
+			color: black;
 			background-image: url('galaxy.jpg');
 		}
 		@media screen and (max-width: 800px) {
@@ -37,6 +39,7 @@
 			width: 23em;
 			height: 30em;
 			background-color: silver;
+			opacity: 0.6;
 		}
 		td {
 			padding: 0;
@@ -70,7 +73,6 @@
 				var oWins = 0;
 				var ties = 0;
 				clearBoard();
-
 				function move(){
 					$(this).off('click');
 					
@@ -87,18 +89,19 @@
 					check_board();
 					showScores();
 				}
-
 				function showScores(){
 					$('#xWins').text(xWins);
 					$('#oWins').text(oWins);
 					$('#ties').text(ties);
 				}
-
 				function check_board(){
 					turn_counter++;
-
 					if(turn_counter === 9){
-						alert("It's a TIE!!!");
+						swal({   
+							title: "Sweet!",   
+							text: "It's a tie!!!!",   
+							imageUrl: "example/images/thumbs-up.jpg"
+						});
 						ties++;
 						clearBoard();
 					} else if (
@@ -111,7 +114,7 @@
 						$('#1').hasClass('x') && $('#5').hasClass('x') && $('#9').hasClass('x') ||
 						$('#3').hasClass('x') && $('#5').hasClass('x') && $('#7').hasClass('x'))
 					{
-							alert("Player X has won!!!");
+							swal("Good job Player X!!!!!", "You scored a point!!!!", "success");
 							xWins++;
 							clearBoard();
 					} else if (
@@ -124,12 +127,11 @@
 						$('#1').hasClass('o') && $('#5').hasClass('o') && $('#9').hasClass('o') ||
 						$('#3').hasClass('o') && $('#5').hasClass('o') && $('#7').hasClass('o'))
 					{
-							alert("Player O has won!!!");
+							swal("Good job Player X!!!!!", "You scored a point!!!!", "success");
 							oWins++;
 							clearBoard();
 					}
 				}
-
 				function clearBoard(){
 					showScores();
 					$("td").text('')
