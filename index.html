@@ -74,7 +74,7 @@
 				var ties = 0;
 				clearBoard();
 				function move(){
-					$(this).off('click');
+					$(this).off('touchstart click');
 					
 					if(turn_counter % 2 == 0) 
 					{
@@ -136,7 +136,7 @@
 					showScores();
 					$("td").text('')
 					$("td").removeAttr('class');
-					$("td").off('click').on('click', move);
+					$("td").off('touchstart click').on('touchstart click', move);
 					turn_counter = 0;
 				}
 			});
